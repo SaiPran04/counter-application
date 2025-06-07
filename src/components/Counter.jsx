@@ -14,9 +14,14 @@ function Counter({count,setCount, label}) {
 export default Counter;
 */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
+import { CounterContext } from '../CounterContext';
+function Counter({ title, which }) {
 
-function Counter({ title, count, setCount }) {
+  const { count1, setCount1, count2, setCount2 } = useContext(CounterContext);
+  const count = which === 1 ? count1 : count2;
+  const setCount = which === 1 ? setCount1 : setCount2;
+
   return (
     <div>
       <h3>{title}</h3>
