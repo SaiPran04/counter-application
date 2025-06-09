@@ -1,9 +1,14 @@
 /*import React, { useState, useEffect, useRef } from 'react';
 import Counter from './Counter';
 */
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FormPage from './components/Form2';
 import CounterPage from './components/CounterPage';
+
+import { Button} from '@mui/material';
+import { Box } from '@mui/material';
+import { Typography } from '@mui/material';
 
 
 import { useState } from "react";
@@ -27,15 +32,40 @@ function App() {
 
     return (
             <BrowserRouter>
-        {/* <div> */}
-            {/* <h1>My Counter App with Form</h1> */}
+            {/* <div style={{ padding: 20 }}>
+                <Button variant="contained" color="primary">
+                    Test Material UI
+                </Button>
+            </div> */}
+
+            <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                height="200px"
+                bgcolor="primary.main"
+                color="white"
+            >
+                <Typography variant="h4"
+                    sx={{
+                        fontFamily: 'Georgia, serif',
+                        fontWeight: '',
+                        letterSpacing: 1,
+                        color: 'white',
+                        textTransform: 'uppercase',
+                    }} >
+
+                    My Counter Application with MUI + React
+                </Typography>
+            </Box>
+
+
             <CounterContext.Provider value={{ count1, setCount1, count2, setCount2 }}>
                 <Routes>
                     <Route path="/" element={<Wrapper />} />
                     <Route path="/counter" element={<CounterPage />} />
                 </Routes>
             </CounterContext.Provider>
-        {/* </div> */}
             </BrowserRouter>
     );
 }

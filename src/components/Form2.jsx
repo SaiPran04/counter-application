@@ -4,6 +4,9 @@ import React, { useContext, useRef } from 'react';
 import { CounterContext } from '../CounterContext';
 import { useNavigate } from 'react-router-dom';
 
+import { Typography, TextField, Button } from '@mui/material';
+import { Paper } from '@mui/material';
+
 function Form() {
   const navigate = useNavigate();
 
@@ -28,23 +31,21 @@ function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Enter starting value for Counter 1:</label><br />
-      <input
-        type="number"
-        ref={input1Ref} />
-      <br />
+    <Paper elevation={3} sx={{ padding: 2 }}>{
+        <form onSubmit={handleSubmit}>
+          <Typography variant="subtitle1">Enter Counter 1 Start Value:</Typography>
+          <TextField type="number" inputRef={input1Ref} fullWidth />
 
-      <label>Enter starting value for Counter 2:</label><br />
-      <input
-        type="number"
-        ref={input2Ref}
-      /><br />
+          <Typography variant="subtitle1">Enter Counter 2 Start Value:</Typography>
+          <TextField type="number" inputRef={input2Ref} fullWidth />
 
-      <button type="submit">initialise counters</button>
-      
-    </form>
+          <Button variant="contained" type="submit">Initialize</Button>
+
+        </form>
+    }
+    </Paper>
   );
+
 }
 
 export default Form;

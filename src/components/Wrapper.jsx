@@ -3,6 +3,8 @@ import { CounterContext } from '../CounterContext';
 import Form from './Form2';
 import Counter from './Counter';
 
+import { Grid, Paper, Box } from '@mui/material';
+
 function Wrapper() {
 
   const { count1, setCount2 } = useContext(CounterContext);
@@ -22,14 +24,25 @@ function Wrapper() {
     }
   }, [count1]);
 
-
-
   return (
-    <div>
-      <Form  />
-      <Counter title = "Counter 1" which = {1}  />
-      <Counter title = "Counter 2" which = {2}  />
-    </div>
+    <Box sx={{ flexGrow: 1, padding: 2 }}>
+      <Grid container spacing={2}>
+        {/* Form Section */}
+        <Grid item xs={12} md={6}>
+          <Paper elevation={3} sx={{ padding: 3 }}>
+            <Form />
+          </Paper>
+        </Grid>
+
+        {/* Counters Section */}
+        <Grid item xs={12} md={6}>
+          <Box>
+            <Counter title="Counter 1" which={1} />
+            <Counter title="Counter 2" which={2} />
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 

@@ -14,26 +14,56 @@ function Counter({count,setCount, label}) {
 export default Counter;
 */
 
-import React, { useEffect, useState,useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { CounterContext } from '../CounterContext';
+
+import { Card, CardContent, CardActions, Typography, Button } from '@mui/material';
+
 function Counter({ title, which }) {
 
   const { count1, setCount1, count2, setCount2 } = useContext(CounterContext);
   const count = which === 1 ? count1 : count2;
   const setCount = which === 1 ? setCount1 : setCount2;
 
+  const handleIncrement = () => {
+    setCount(prev => prev + 1);
+  };
+
+  const handleReset = () => {
+    setCount(0);
+  };
+
   return (
-    <div>
-      <h3>{title}</h3>
-      {count !== null ? (
-        <>
-          <p>Current Value: {count}</p>
-          <button onClick={() => setCount(prev => prev+1)}>Increment</button>
-        </>
-      ) : (
-        <p>Please enter a starting value.</p>
+    <Card sx={{ marginBottom: 3 }}  elevation={4}>
+      <CardContent>
+        <Typography variant="h6" gutterBottom>
+          {title}
+        </Typography>
+
+        {count !== null ? (
+          <>
+            <Typography variant="h4" sx={{ marginBottom: 2 }}>
+              {count}
+            </Typography>
+          </>
+        ) : (
+          <Typography variant="body2" color="text.secondary">
+            Please enter a starting value.
+          </Typography>
+        )}
+      </CardContent>
+
+      {count !== null && (
+        <CardActions>
+          <Button variant="contained" onClick={handleIncrement}>
+            Increment
+          </Button>
+          <Button variant="outlined" color="error" onClick={handleReset}>
+            Reset
+          </Button>
+        </CardActions>
       )}
-    </div>
+    </Card>
   );
 }
 
