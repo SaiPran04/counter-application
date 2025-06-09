@@ -21,12 +21,21 @@ import { Card, CardContent, CardActions, Typography, Button } from '@mui/materia
 
 function Counter({ title, which }) {
 
-  const { count1, setCount1, count2, setCount2 } = useContext(CounterContext);
+  const { count1, setCount1, count2, setCount2, log, setLog } = useContext(CounterContext);
   const count = which === 1 ? count1 : count2;
   const setCount = which === 1 ? setCount1 : setCount2;
 
   const handleIncrement = () => {
-    setCount(prev => prev + 1);
+    const newValue = count + 1;
+    setCount(newValue);
+
+    if (which === 1) {
+      const timestamp = new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      setLog(prev => [...prev, { time: timestamp, count: count1 }]);
+    }
   };
 
   const handleReset = () => {

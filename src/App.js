@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FormPage from './components/Form2';
 import CounterPage from './components/CounterPage';
 
-import { Button} from '@mui/material';
+import { Button } from '@mui/material';
 import { Box } from '@mui/material';
 import { Typography } from '@mui/material';
 
@@ -17,6 +17,7 @@ import Wrapper from './components/Wrapper';
 function App() {
     const [count1, setCount1] = useState(null);
     const [count2, setCount2] = useState(null);
+    const [log, setLog] = useState([]);
     // const count1Tracker = () => {
     //   const newIncrement = count1Increments + 1;
     //   const newCount1 = count1 +1;
@@ -31,7 +32,7 @@ function App() {
     // }
 
     return (
-            <BrowserRouter>
+        <BrowserRouter>
             {/* <div style={{ padding: 20 }}>
                 <Button variant="contained" color="primary">
                     Test Material UI
@@ -60,13 +61,13 @@ function App() {
             </Box>
 
 
-            <CounterContext.Provider value={{ count1, setCount1, count2, setCount2 }}>
+            <CounterContext.Provider value={{ count1, setCount1, count2, setCount2, log, setLog }}>
                 <Routes>
                     <Route path="/" element={<Wrapper />} />
                     <Route path="/counter" element={<CounterPage />} />
                 </Routes>
             </CounterContext.Provider>
-            </BrowserRouter>
+        </BrowserRouter>
     );
 }
 
